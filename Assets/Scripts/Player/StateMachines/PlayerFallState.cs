@@ -20,8 +20,7 @@ public class PlayerFallState : PlayerAirState
     {
         base.Update();
 
-        // TODO : Grounded로 상태 전환
-        if (stateMachine.Player.IsGrounded())
+        if (stateMachine.Player.Controller.isGrounded)
         {
             // 플레이어가 땅에 닿으면 Idle 상태로 전환
             stateMachine.ChangeState(stateMachine.IdleState);

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Android;
 using UnityEngine.InputSystem;
 
 public class PlayerGroundedState : PlayerBaseState
@@ -28,7 +25,7 @@ public class PlayerGroundedState : PlayerBaseState
         base.PhysicsUpdate();
 
         // TODO : Player의 지면 감지
-        if (!stateMachine.Player.IsGrounded() && stateMachine.Player.Rigidbody.velocity.y < Physics.gravity.y * Time.fixedDeltaTime)
+        if (!stateMachine.Player.Controller.isGrounded && stateMachine.Player.Controller.velocity.y < Physics.gravity.y * Time.fixedDeltaTime)
         {
             stateMachine.ChangeState(stateMachine.FallState);
             return;
