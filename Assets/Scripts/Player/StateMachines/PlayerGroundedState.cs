@@ -28,10 +28,14 @@ public class PlayerGroundedState : PlayerBaseState
         base.PhysicsUpdate();
 
         // TODO : Player의 지면 감지
+        if (!stateMachine.Player.IsGrounded() && stateMachine.Player.Rigidbody.velocity.y < Physics.gravity.y * Time.fixedDeltaTime)
+        {
+            stateMachine.ChangeState(stateMachine.FallState);
+            return;
+        }
     }
 
     // Player의 상태가 Ground일 때, 이동 키의 입력을 멈추면 Idle 상태로 진입하게 만든다.
-    // Air 상태일 때나 Attack 상태일 때는 이동 키의 입력을 멈췄다고 Idle로 변경되면 안되기 때문에 Ground에서 처리해준다.
     protected override void OnMoveCanceled(InputAction.CallbackContext context)
     {
         if (stateMachine.MoveInput == Vector2.zero) return;
