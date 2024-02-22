@@ -4,9 +4,9 @@ public abstract class StateMachine
 
     public void ChangeState(IState newState)
     {
-        currentState.Exit();
+        currentState?.Exit();
         currentState = newState;
-        currentState.Enter();
+        currentState?.Enter();
     }
 
     public void HandleInput()

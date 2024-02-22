@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [field: Header("References")]
+    [field: SerializeField] public PlayerSO Data { get; private set; }
+
+    [field: Header("Animations")]
+    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
+
+    public Rigidbody Rigidbody { get; private set; }
+    public Animator Animator { get; private set; }
+    public PlayerInput Input { get; private set; }
+
+    private PlayerStateMachine stateMachine;
+
+    private void Awake()
     {
-        
+        AnimationData.Initialize();
+
+        Rigidbody = GetComponent<Rigidbody>();
+        Animator = GetComponentInChildren<Animator>();
+        Input = GetComponent<PlayerInput>();
+
+        stateMachine = new PlayerStateMachine(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        // 마우스 커서 안보이게 하기
+        Cursor.lockState = CursorLockMode.Locked;
+        stateMachine.ChangeState(stateMachine.IdleState);
+    }
+
+    private void Update()
+    {
+        stateMachine.HandleInput();
+        stateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.PhysicsUpdate();
     }
 }

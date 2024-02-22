@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerFallState : MonoBehaviour
+public class PlayerFallState : PlayerAirState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerFallState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+        StartAnimation(stateMachine.Player.AnimationData.FallParameterHash);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        StopAnimation(stateMachine.Player.AnimationData.FallParameterHash);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        // TODO : Grounded로 상태 전환
     }
 }

@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerRunState : MonoBehaviour
+public class PlayerRunState : PlayerGroundedState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerRunState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        // 플레이어 이동 속도를 달리기 속도로 변경하기
+        stateMachine.MoveSpeedModifier = groundedData.RunSpeedModifier;
+        base.Enter();
+        StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
 }
