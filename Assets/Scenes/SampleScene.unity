@@ -1913,9 +1913,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1921691163}
   - component: {fileID: 1921691166}
-  - component: {fileID: 1921691169}
   - component: {fileID: 1921691170}
   - component: {fileID: 1921691171}
+  - component: {fileID: 1921691172}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1962,18 +1962,6 @@ MonoBehaviour:
     airParameterName: '@Air'
     jumpParameterName: Jump
     fallParameterName: Fall
---- !u!114 &1921691169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921691162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4c60112f4b4ff419e2033ddb1f9c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &1921691170
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2014,6 +2002,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1921691170}
   drag: 0.3
+--- !u!114 &1921691172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921691162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c60112f4b4ff419e2033ddb1f9c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2093077643
 GameObject:
   m_ObjectHideFlags: 3

@@ -25,7 +25,6 @@ public class PlayerAnimationData
 
     public void Initialize()
     {
-        Debug.Log("Initialize");
         GroundParameterHash = Animator.StringToHash(groundParameterName);
         IdleParameterHash = Animator.StringToHash(idleParameterName);
         WalkParameterHash = Animator.StringToHash(walkParameterName);
