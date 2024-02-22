@@ -7,13 +7,10 @@ public class PlayerBaseState : IState
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundedData groundedData;
 
-    PlayerInputActions.PlayerActions playerActions;
-
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
         this.stateMachine = playerStateMachine;
         groundedData = stateMachine.Player.Data.GroundedData;
-        playerActions = stateMachine.Player.Input.PlayerActions;
     }
 
     public virtual void Enter()
@@ -50,7 +47,7 @@ public class PlayerBaseState : IState
         input.PlayerActions.Move.canceled += OnMoveCanceled;
         input.PlayerActions.Run.started += OnRunStarted;
 
-        playerActions.Jump.started += OnJumpStarted;
+        stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
     }
 
     protected virtual void RemoveInputActionsCallbacks()
@@ -60,7 +57,7 @@ public class PlayerBaseState : IState
         input.PlayerActions.Move.canceled -= OnMoveCanceled;
         input.PlayerActions.Run.started -= OnRunStarted;
 
-        playerActions.Jump.started -= OnJumpStarted;
+        stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
     }
 
     protected virtual void OnRunStarted(InputAction.CallbackContext context)
@@ -80,7 +77,7 @@ public class PlayerBaseState : IState
 
     private void ReadMoveInput()
     {
-        stateMachine.MoveInput = playerActions.Move.ReadValue<Vector2>();
+        stateMachine.MoveInput = stateMachine.Player.Input.PlayerActions.Move.ReadValue<Vector2>();
     }
 
     private void Move()
