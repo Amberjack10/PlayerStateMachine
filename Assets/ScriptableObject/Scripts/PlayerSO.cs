@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSO : MonoBehaviour
+[CreateAssetMenu(fileName = "Player", menuName = "Character/Player")]
+public class PlayerSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [field: SerializeField] public PlayerGroundedData GroundedData { get; private set; }
+    [field: SerializeField] public PlayerAirData AirData { get; private set; }
 }
