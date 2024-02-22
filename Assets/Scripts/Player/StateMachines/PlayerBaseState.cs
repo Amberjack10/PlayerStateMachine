@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -114,7 +112,10 @@ public class PlayerBaseState : IState
     private void Move(Vector3 movementDirection)
     {
         float movementSpeed = GetMovementSpeed();
-        stateMachine.Player.Rigidbody.velocity = movementDirection * movementSpeed;
+        stateMachine.Player.Controller.Move(
+            ((movementDirection * movementSpeed) + stateMachine.Player.ForceReceiver.Movement)
+            * Time.deltaTime
+            );
     }
 
     private void Rotate(Vector3 movementDirection)
